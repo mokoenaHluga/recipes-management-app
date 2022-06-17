@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="color:white;">Recipe Management</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+          aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input type="search" (ngModelChange)="searchRecipe(key.value)" #key="ngModel" ngModel
+             name="key" id="searchTitle" class="form-control mr-sm-2" placeholder="Search recipes..." required>
+    </form>
+
+  </div>
+</nav>
+<div class="container" id="main-container">
+  <div class="row ">
+    <div class="col-md-6 col-xl-4">
+      <div *ngFor="let recipe of recipes" class="card m-b-100">
+        <div class="card-body row">
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5>{{recipe?.recipeTitle}}</h5>
+            <p class="m-0">Meal type: {{recipe?.mealType}}</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Number to serv : {{recipe?.numberItServes}}</li>
+          <li class="list-group-item"><i></i>Difficulty level : {{recipe?.difficultyLevel}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="float-left btn-group btn-group-sm">
+            <a href="#" (click)="viewIngredients(recipe)" class="btn btn-primary tooltips" data-placement="top"
+               data-toggle="tooltip"
+               data-original-title="Edit">
+              <i class="fa fa-pencil"></i> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" id="viewIngredients" tabindex="-1" role="dialog" aria-labelledby="viewIngredientsModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewIngredientsModalLabel">Recipe Ingredients for {{ingredentTitle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let ingredient of ingredients">
+          <label>{{ingredient?.ingredientName}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification for no recipes -->
+<div *ngIf="recipes?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO RECIPES!</h4>
+    <p>No Recipes found.</p>
+  </div>
+</div>
