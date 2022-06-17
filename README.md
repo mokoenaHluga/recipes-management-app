@@ -9,3 +9,6 @@ Back-end service is a spring boot service running of Java 11 and packaged using 
 Front-end is and angular project, you need node 14+ to rub the app.
   frist have to run a npm i to install your app,
    for more on this please refer to the read me file in the recipe-management-fe foilder.
+   
+   
+APPLICATION STILL IN DEV STAGE, UNIT TESTS ARE STILL IN PROGRESS
